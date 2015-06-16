@@ -4,8 +4,6 @@ using System;
 
 public class PlayerShip : Projectile
 {
-    [SerializeField] private Score score;
-
     [SerializeField] private GameObject hitExplosion = null;
     [SerializeField] private GameObject explosion = null;
 

@@ -7,18 +7,19 @@ public class ScoreHandler : MonoBehaviour
 {
     [SerializeField]
     private Text HighScore;
-    public static uint currentScore = 0;
+    public static Score score;
     private Text textComponent;
 
     void Awake()
     {
-        currentScore = 0;
+        score = new Score();
+        score.OnScoreChanged += OnScoreChanged;
         textComponent = GetComponent<Text>();
     }
 
-    void Update()
+    void OnScoreChanged(uint newScore)
     {
-        textComponent.text = "Score" + "\n" + currentScore.ToString();
+        textComponent.text = "Score" + "\n" + newScore.ToString();
         
         UpdateHighScore();
     }
@@ -27,10 +28,10 @@ public class ScoreHandler : MonoBehaviour
     {
         int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
 
-        if (currentScore > oldHighscore)
+        if (score.CurrentScore > oldHighscore)
         {
-            PlayerPrefs.SetInt("highscore", (int)currentScore);
-            HighScore.text = "High Score" + "\n" + currentScore.ToString();
+            PlayerPrefs.SetInt("highscore", (int)score.CurrentScore);
+            HighScore.text = "High Score" + "\n" + score.CurrentScore.ToString();
         }
         else
         {

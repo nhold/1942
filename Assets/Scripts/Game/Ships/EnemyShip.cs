@@ -3,16 +3,16 @@ using System.Collections;
 
 public class EnemyShip : Projectile
 {
-    [SerializeField]
-    private GameObject explosion = null;
-    [SerializeField]
-    private float shootTimerCount = 1.5f;
-    [SerializeField]
-    private uint scoreValue = 20;
+    [SerializeField] private GameObject explosion = null;
+    [SerializeField] private uint scoreValue = 20;
 
     void Start()
     {
-        SetMovementStrategy(new StraightMoveStrategy(Vector2.down, transform));
+        int i = Random.Range(0, 4);
+        if(i == 1)
+            SetMovementStrategy(new ZigZagMoveStrategy(Vector2.down, transform, 1.0f, 5.0f));
+        else
+            SetMovementStrategy(new StraightMoveStrategy(Vector2.down, transform));
     }
 
     void OnBecameInvisible()
@@ -24,7 +24,9 @@ public class EnemyShip : Projectile
     void OnCollisionEnter2D(Collision2D other)
     {
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-        ScoreHandler.currentScore += scoreValue;
+
+        if(other.gameObject.GetComponent<Projectile>() != null)
+            ScoreHandler.score.AddToScore(scoreValue);
 
         GameObject.Destroy(gameObject);
     }

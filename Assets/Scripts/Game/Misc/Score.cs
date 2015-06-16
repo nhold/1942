@@ -6,6 +6,18 @@ public class Score
     private uint score;
     public event Action<uint> OnScoreChanged;
 
+    public uint CurrentScore
+    {
+        get
+        {
+            return score;
+        }
+        private set
+        {
+
+        }
+    }
+
     public Score()
     {
         score = 0;

@@ -39,6 +39,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ResetHighScores()
+    {
+        PlayerPrefs.SetInt("highscore", 0);
+    }
+
     public void SetMouseInput()
     {
         isMouseInput = !isMouseInput;

@@ -9,7 +9,7 @@ public class PauseOnInput : MonoBehaviour
     {
         if(Input.GetKeyUp(pauseKeyCode))
         {
-            Time.timeScale *= -1;
+            Time.timeScale = (int)Time.timeScale ^ 1;
         }
     }
 }
