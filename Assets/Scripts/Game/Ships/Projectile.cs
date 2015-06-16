@@ -8,7 +8,20 @@ using System.Collections;
 public class Projectile : MonoBehaviour 
 {
     [SerializeField] private Moveable moveable;
-    [SerializeField] private Life life;
+    [SerializeField] protected Life life;
+
+    public Life Life
+    {
+        get
+        {
+            return life;
+        }
+
+        private set
+        {
+            life = value;
+        }
+    }
 
     public void SetMovementStrategy(IMoveStrategy moveStrategy)
     {
@@ -30,11 +43,6 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnBecameInvisible()
-    {
-        GameObject.Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject.Destroy(gameObject);
     }

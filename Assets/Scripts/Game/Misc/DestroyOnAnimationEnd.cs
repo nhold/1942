@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Explosion : MonoBehaviour 
+public class DestroyOnAnimationEnd : MonoBehaviour 
 {
 	void OnAnimationEnd()
     {

@@ -12,13 +12,13 @@ public class LifeHandler : MonoBehaviour
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         playerController = playerObject.GetComponent<PlayerShip>();
-        playerController.OnLivesChanged += UpdateLives;
-        UpdateLives(playerController.Lives);
+        playerController.Life.OnAddLife += UpdateLives;
+        playerController.Life.OnTakeLife += UpdateLives;
     }
 
     void Start()
     {
-        UpdateLives(playerController.Lives);
+        UpdateLives(playerController.Life.Count);
     }
 
     private void UpdateLives(uint newLives)
@@ -37,5 +37,4 @@ public class LifeHandler : MonoBehaviour
             childCount--;
         }
     }
-
 }

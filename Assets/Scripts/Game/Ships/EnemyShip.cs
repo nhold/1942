@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyShip : Ship
+public class EnemyShip : Projectile
 {
     [SerializeField]
     private GameObject explosion = null;
