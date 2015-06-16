@@ -19,7 +19,7 @@ class Moveable : MonoBehaviour
         }
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         if(moveStrategy != null)
             moveStrategy.Move(moveSpeed);

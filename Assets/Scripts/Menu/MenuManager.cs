@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
         bool value = PlayerPrefs.GetInt("isMouseInputMovement") == 1;
         mouseToggle.isOn = value;
         keyBoardToggle.isOn = !value;
+        Screen.SetResolution(640, 480, false);
     }
 
 	public void StartGame()

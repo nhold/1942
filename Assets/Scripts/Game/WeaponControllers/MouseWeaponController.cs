@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MouseWeaponController : WeaponController 
 {
-	
 	void Update () 
     {
         

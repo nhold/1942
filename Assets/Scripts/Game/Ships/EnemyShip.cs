@@ -10,7 +10,7 @@ public class EnemyShip : Projectile
     {
         int i = Random.Range(0, 4);
         if(i == 1)
-            SetMovementStrategy(new ZigZagMoveStrategy(Vector2.down, transform, 1.0f, 5.0f));
+            SetMovementStrategy(new ZigZagMoveStrategy(Vector2.down, transform, 1.0f, 1.5f));
         else
             SetMovementStrategy(new StraightMoveStrategy(Vector2.down, transform));
     }
