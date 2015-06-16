@@ -23,18 +23,13 @@ public class PlayerShip : Projectile
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        HandleCollision(other.gameObject);
-    }
-
-    private void HandleCollision(GameObject other)
-    {
         if (hitExplosion)
         {
             var direction = other.transform.position - transform.position;
             direction /= 2;
             GameObject.Instantiate(hitExplosion, transform.position + direction, Quaternion.identity);
             life.RemoveLife();
-            if(life.Count == 0)
+            if (life.Count == 0)
             {
 
                 GameObject.Destroy(gameObject);

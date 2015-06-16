@@ -15,17 +15,11 @@ public class EnemyShip : Projectile
             SetMovementStrategy(new StraightMoveStrategy(Vector2.down, transform));
     }
 
-    void OnBecameInvisible()
-    {
-        if (transform.position.y < 0)
-            GameObject.Destroy(gameObject);
-    }
-
     void OnCollisionEnter2D(Collision2D other)
     {
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
 
-        if(other.gameObject.GetComponent<Projectile>() != null)
+        if(other.gameObject.tag != "Player")
             ScoreHandler.score.AddToScore(scoreValue);
 
         GameObject.Destroy(gameObject);

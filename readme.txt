@@ -7,6 +7,7 @@ Here are some notes:
 * The UML was done to get something for me to follow, I didn't do stuff like UI or anything like that as it gets a little crazy for Unity.
 * I wanted to do an Object Pooling system, but didn't have time. I could have easily gotten an open source on like: https://github.com/prime31/RecyclerKit for a nice performance boost.
 * I hope my scenery passes as a 'star field' even though it isn't very efficient (All scenery has it's own movement rather than being managed from some SceneryHandler or manager or just being another scrolling background).
+* I may have missed a few [RequireComponents] which I like to use to ensure there won't be crashes when someone attempts to access them but a wife, daughter and life takes time away from technical exams.
 * Enjoy reading the code!
 
 The code will also be available at my github: https://github.com/nhold
