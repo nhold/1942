@@ -1,42 +1,45 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Life))]
+[RequireComponent(typeof(Moveable))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour 
 {
-    [SerializeField] private float speed = 80.0f;
+    [SerializeField] private Moveable moveable;
+    [SerializeField] private Life life;
 
-    private Vector2 vector = Vector2.up;
-
-    public Vector2 Vector
+    public void SetMovementStrategy(IMoveStrategy moveStrategy)
     {
-        set
+        if(moveable)
+            moveable.MoveStrategy = moveStrategy;
+    }
+
+    private void Awake()
+    {
+        if(!life)
         {
-            vector = value;
-            vector.Normalize();
+            life = GetComponent<Life>();
         }
 
-        get
+        if (!moveable)
         {
-            return vector;   
+            moveable = GetComponent<Moveable>();
         }
     }
 
-    void Update()
-    {
-        transform.Translate(vector * speed * Time.deltaTime);
-    }
-
-    void OnBecameInvisible()
+    private void OnBecameInvisible()
     {
         GameObject.Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject.Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         GameObject.Destroy(gameObject);
     }

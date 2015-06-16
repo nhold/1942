@@ -1,61 +1,65 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 
 public class ObjectSpawner : MonoBehaviour 
 {
-    [SerializeField] private List<GameObject> spawnPrefabData;
-    [SerializeField] private float spawnRate;
-    [SerializeField] private bool spawnOnStart;
+    [SerializeField] private List<GameObject>   spawnablePrefabs;
+    [SerializeField] private float              spawnRate;
+    [SerializeField] private bool               spawnOnStart;
+    [SerializeField] private float              spawnDelay;
 
-    private float spawnTimer;
+    private bool    isSpawning;
+    private float   spawnTimer;
+    private float   spawnDelayTimer;
 
-    private bool isSpawning;
-    public bool IsSpawning
+    public void StartSpawning()
     {
-        get
-        {
-            return isSpawning;
-        }
-        set
-        {
-            isSpawning = value;
-        }
+        isSpawning = true;
+        spawnDelayTimer = spawnDelay;
     }
 
-    void Awake()
+    public void StopSpawning()
     {
-        spawnTimer = 0.0f;
+        isSpawning = false;
     }
 
-    void Start()
+    private void Start()
     {
         if(spawnOnStart)
         {
-            IsSpawning = true;
+            StartSpawning();
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if(IsSpawning)
+        if (isSpawning)
         {
-            spawnTimer += Time.deltaTime;
-            if(spawnTimer > spawnRate)
+            if (spawnDelayTimer >= spawnDelay)
             {
-                Spawn();
-                spawnTimer = 0;
+                if (spawnTimer >= spawnRate)
+                {
+                    Spawn();
+                    spawnTimer = 0;
+                }
+                else
+                {
+                    spawnTimer += Time.deltaTime;
+                }
+            }
+            else
+            {
+                spawnDelayTimer += Time.deltaTime;
             }
         }
     }
 
     private void Spawn()
     {
-        Vector3 rndPosWithin;
-        rndPosWithin = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0.0f);
-        rndPosWithin = transform.TransformPoint(rndPosWithin * .5f);
-        int randomIndex = Random.Range(0, spawnPrefabData.Count);
-        GameObject newSpawnedObject = Instantiate(spawnPrefabData[randomIndex], rndPosWithin, Quaternion.identity) as GameObject;
-
+        GameObject newSpawnedObject = Instantiate(spawnablePrefabs.GetRandomObject(), transform.GetRandomPointInTransform(), Quaternion.identity) as GameObject;
+        newSpawnedObject.transform.SetParent(transform);
     }
+
 }

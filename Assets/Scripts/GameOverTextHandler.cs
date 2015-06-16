@@ -9,7 +9,7 @@ public class GameOverTextHandler : MonoBehaviour
     private string gameOverText = "Game Over!";
     private bool isStarted = false;
     private int i = 0;
-    private float timer = 0.5f;
+    private float timer = 0.1f;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class GameOverTextHandler : MonoBehaviour
                     {
                         textComponent.text += gameOverText[i];
                         i++;
-                        timer = 0.5f;
+                        timer = 0.1f;
                     }
                 }
                 else

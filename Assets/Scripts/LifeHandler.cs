@@ -6,12 +6,12 @@ public class LifeHandler : MonoBehaviour
     [SerializeField]
     private GameObject LifePrefab;
 
-    private PlayerController playerController;
+    private PlayerShip playerController;
 
     void Awake()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        playerController = playerObject.GetComponent<PlayerController>();
+        playerController = playerObject.GetComponent<PlayerShip>();
         playerController.OnLivesChanged += UpdateLives;
         UpdateLives(playerController.Lives);
     }
