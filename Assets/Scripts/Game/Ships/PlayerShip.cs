@@ -11,7 +11,7 @@ public class PlayerShip : Projectile
     {
         if (PlayerPrefs.GetInt("isMouseInputMovement") == 1)
         {
-            SetMovementStrategy(new MouseInputMoveStrategy(transform));
+            SetMovementStrategy(new SmoothMouseInputMoveStrategy(transform));
             GetComponent<MouseWeaponController>().enabled = true;
         }
         else

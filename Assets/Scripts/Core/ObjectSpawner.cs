@@ -1,17 +1,16 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-public class ObjectSpawner : MonoBehaviour 
+public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject>   spawnablePrefabs;
-    [SerializeField] private float              spawnRate;
-    [SerializeField] private bool               spawnOnStart;
-    [SerializeField] private float              spawnDelay;
+    [SerializeField] private List<GameObject> spawnablePrefabs;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private bool spawnOnStart;
+    [SerializeField] private float spawnDelay;
 
-    private bool    isSpawning;
-    private float   spawnTimer;
-    private float   spawnDelayTimer;
+    private bool isSpawning;
+    private float spawnTimer;
+    private float spawnDelayTimer;
 
     public void StartSpawning()
     {
@@ -26,7 +25,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Start()
     {
-        if(spawnOnStart)
+        if (spawnOnStart)
         {
             StartSpawning();
         }
